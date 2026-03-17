@@ -1,104 +1,106 @@
-# Harbor ⛵ - Minimalist iOS Reading App
+# Harbor - Minimalist iOS Reading App
 
-A beautifully designed, sensor-integrated reading app with voice control, adaptive brightness, and ocean-themed progress visualization.
+A beautifully designed, minimalist reading app for iPhone 17+ with adaptive ambient light brightness, voice-controlled navigation, ocean-themed progress visualization, and favorite sentence capture.
 
 ## Features
 
-### 📚 Core Reading Experience
-- **Immersive reading interface** with smooth page transitions
-- **4 pre-loaded sample books** with diverse content
-- **Tap navigation**: Left/right edges for quick page turns
-- **Voice commands**: "Next page", "Previous page", "Go to chapter X"
-- **Button navigation**: Always-accessible prev/next controls
+### Core Reading Experience
+- **Beautiful ocean-themed interface** with calm harbor blues, teals, and soft grays
+- **3 pre-loaded sample books** with diverse literary content
+- **Smooth page transitions** with adaptive animations
+- **Full-text selection** for note-taking and highlighting
+- **Real-time progress tracking** throughout your reading journey
 
-### 🌊 Ocean-Themed Design
-- **Animated wave visualization** showing reading progress
-- **Sailboat indicator** tracking your journey through books
-- **Calm color palette**: Harbor blues (#4A90E2), deep navy (#1B4965), teal accents (#00A8CC)
-- **Smooth animations**: Every interaction feels fluid and responsive
+### Ocean-Themed Navigation
+- **Tap navigation**: Simple left/right edge taps for page turns
+- **Voice commands**: Hands-free control with natural speech recognition
+  - "Next page" / "Forward" → advance to next page
+  - "Previous page" / "Back" → return to previous page
+  - "Go to chapter 3" → jump directly to chapter
+- **Button controls**: Always-visible previous/next buttons
+- **Floating chapter selector**: Quick jump to any chapter
+- **Smart progress visualization**: Wave animations showing reading progress
 
-### 💡 Adaptive Brightness
-- **Real-time ambient light detection** using device camera
-- **Automatic dark mode** activation in low-light environments
-- **Accelerometer integration** for reading posture detection
-- **Manual brightness slider** for fine-tuning
-- **Smooth transitions** that don't jar your reading
+### Adaptive Brightness (Sensor Integration)
+- **Ambient light detection**: Monitors screen brightness and device orientation
+- **Automatic dark mode**: Enables in low-light environments and after 8 PM
+- **Smooth transitions**: 0.3-second animations prevent jarring changes
+- **Device motion tracking**: Uses accelerometer for enhanced light detection
+- **Manual override**: Brightness slider for fine-tuning when needed
 
-### 🎤 Voice Navigation
-- **Hands-free page control**: Speak to navigate
-- **Natural commands**: "Next page", "Previous page", "Go to chapter 2"
-- **Real-time feedback**: See recognized text as you speak
-- **Keyword matching**: Robust parsing for various phrasings
+### Voice Navigation (Speech Recognition)
+- **Keyword-based commands**: Processes natural speech into navigation actions
+- **Real-time feedback**: Shows recognized text as you speak
+- **Haptic confirmation**: Tactile feedback confirms voice input
+- **No internet required**: On-device speech recognition (except initialization)
+- **Robust parsing**: Handles various phrasings and speaking styles
 
-### 📌 Favorite Sentences
-- **Instant capture**: Save quotes while reading
-- **Auto-tagging**: Sentences include book, chapter, and page reference
+### Favorite Sentence Capture
+- **Quick save**: Long-press or use heart icon to capture passages
+- **Auto-metadata**: Automatically tags with book, chapter, and page number
+- **Local storage**: All favorites saved to device with UserDefaults
+- **Gallery view**: Browse and manage all captured sentences
 - **Full-text search**: Find any favorite quote instantly
-- **Smart sorting**: By date, book, or length
-- **Easy sharing**: Copy quotes to clipboard
-- **Persistent storage**: Favorites saved locally
+- **Easy deletion**: Remove favorites from the gallery
 
-### 🎨 Apple-Style Design
-- **Native SwiftUI**: 100% Apple-designed UI patterns
-- **Haptic feedback**: Tactile responses for all interactions
-- **Smooth animations**: Carefully tuned timing curves
-- **Responsive layout**: Adapts beautifully to any screen size
-- **Dark mode ready**: Automatic theme switching
+### Apple-Style Design
+- **SwiftUI-first**: 100% native iOS design patterns
+- **Haptic feedback**: Light/medium impacts for all interactions
+- **Smooth animations**: Carefully tuned 0.3-second transitions
+- **Color system**: 5-color palette for cohesion and accessibility
+- **Dark mode ready**: Automatic theme switching based on environment
+- **Responsive typography**: Text scales with system settings
 
-### 📱 Sensor Integration
-- **Camera**: Ambient light detection for auto-brightness
-- **Accelerometer**: Reading posture optimization
-- **Microphone**: Voice command recognition
-- **Motion Manager**: Enhanced UX based on device orientation
+## Quick Start - 5 Minutes
 
-## Quick Start (5 Minutes)
-
-1. **Create Xcode Project**
+1. **Create an Xcode Project**
    - File → New → Project
-   - Choose "App" template
-   - Name it "Harbor", use SwiftUI
+   - Select iOS → App
+   - Product Name: "Harbor"
+   - Interface: SwiftUI
+   - Language: Swift
 
-2. **Add Swift Files**
-   - Copy all 7 .swift files to your project
-   - Check "Copy items if needed"
+2. **Add Project Files**
+   - Create folder structure matching below
+   - Copy each .swift file to corresponding folder
 
-3. **Configure Permissions**
-   - Open Info.plist
-   - Add 3 permission strings (see QUICK_START.md)
-   - Takes 1 minute
+3. **Update Info.plist**
+   - Add three permission keys (see Configuration below)
 
-4. **Enable Capabilities**
-   - Select target → Signing & Capabilities
-   - Add "Microphone" and "Camera"
-
-5. **Build & Run**
+4. **Build and Run**
+   - Select iPhone 17 simulator (or device)
    - Press Cmd+R
-   - Choose iPhone 17 simulator
-   - Enjoy!
-
-See **QUICK_START.md** for detailed 5-minute setup.
 
 ## Project Structure
 
 ```
 Harbor/
-├── HarborApp.swift              # App entry point
-├── Models.swift                 # Data models & sample books
-├── Managers.swift               # Sensor & voice managers
-├── HomeScreen.swift             # Book library with ocean visualization
-├── ReadingScreen.swift          # Reading interface with all navigation
-├── FavoritesGalleryView.swift   # Favorite sentences management
-├── HapticManager.swift          # Haptics, animations & design system
+├── Models/
+│   └── Book.swift
 │
-├── QUICK_START.md               # 5-minute setup guide (START HERE)
-├── SETUP.md                     # Complete detailed setup
-├── IMPLEMENTATION_NOTES.md      # Technical deep dive
-├── INFO_PLIST_TEMPLATE.txt      # Permission configuration
-├── FILE_STRUCTURE.txt           # Project organization guide
-└── README.md                    # This file
+├── Managers/
+│   ├── BookManager.swift
+│   ├── AmbientLightManager.swift
+│   ├── SpeechManager.swift
+│   └── FavoritesManager.swift
+│
+├── Views/
+│   ├── HomeView.swift
+│   ├── ReadingView.swift
+│   ├── FavoriteCaptureView.swift
+│   └── ChapterSelectorView.swift
+│
+├── Components/
+│   ├── WaveAnimation.swift
+│   └── AnimationModifiers.swift
+│
+├── Constants/
+│   └── Colors.swift
+│
+└── HarborApp.swift
 ```
 
-**Total**: 1,888 lines of Swift code + 1,205 lines of documentation
+**Total**: 11 Swift files, ~2,000 lines of production code
 
 ## Architecture
 
