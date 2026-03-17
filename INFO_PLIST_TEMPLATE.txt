@@ -1,0 +1,106 @@
+INSTRUCTIONS FOR INFO.PLIST CONFIGURATION
+==========================================
+
+Follow these steps to add required permissions to your Xcode project:
+
+STEP 1: Locate Info.plist
+- In Xcode, find "Info.plist" in the Project Navigator (left sidebar)
+- Open it in the Property List editor
+
+STEP 2: Add Camera Permission
+- Click the "+" button to add a new key
+- Type: NSCameraUsageDescription
+- Type: String
+- Value: "Harbor uses your camera's light sensor to automatically adjust reading brightness based on ambient light conditions."
+
+STEP 3: Add Microphone Permission
+- Click the "+" button again
+- Type: NSMicrophoneUsageDescription
+- Type: String
+- Value: "Harbor uses your microphone to recognize voice commands for page navigation and chapter selection."
+
+STEP 4: Add Speech Recognition Permission (Optional but Recommended)
+- Click the "+" button
+- Type: NSSpeechRecognitionUsageDescription
+- Type: String
+- Value: "Harbor requests permission to use speech recognition for voice-controlled reading navigation."
+
+EXPECTED XML FORMAT (for reference)
+===================================
+
+If you open Info.plist as source code, it should look like:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Your other keys here -->
+    
+    <key>NSCameraUsageDescription</key>
+    <string>Harbor uses your camera's light sensor to automatically adjust reading brightness based on ambient light conditions.</string>
+    
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Harbor uses your microphone to recognize voice commands for page navigation and chapter selection.</string>
+    
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Harbor requests permission to use speech recognition for voice-controlled reading navigation.</string>
+    
+    <!-- Your other keys here -->
+</dict>
+</plist>
+
+CAPABILITIES CONFIGURATION
+==========================
+
+In Xcode:
+
+1. Select "Harbor" target in Project Navigator
+2. Click "Signing & Capabilities" tab
+3. Click "+ Capability" button
+4. Search for and add:
+   - Microphone
+   - Camera
+
+These will automatically add entitlements to your app.
+
+MINIMUM DEPLOYMENT TARGET
+=========================
+
+Make sure your project is set to iOS 17.0 or higher:
+
+1. Select "Harbor" target
+2. Go to "General"
+3. Set "Minimum Deployments" to iOS 17.0+
+
+TESTING PERMISSIONS
+===================
+
+To test if permissions are working:
+
+1. Build and run the app on a device or simulator
+2. When you first try to:
+   - Read a book → should ask for Camera access
+   - Use voice commands → should ask for Microphone access
+3. Grant permissions when prompted
+
+If permissions are not requested, check:
+- Info.plist has the correct keys
+- Capabilities are enabled
+- App hasn't been force-quit (may need reinstall)
+
+TROUBLESHOOTING
+===============
+
+If voice commands aren't working:
+1. Check Settings > Harbor > Microphone is enabled
+2. Ensure internet connection (required for speech recognition)
+3. Re-run the app after granting permissions
+
+If brightness adjustment isn't working:
+1. Check Settings > Harbor > Camera is enabled
+2. Try in different light conditions (bright and dark)
+3. Ensure camera lens is not covered
+
+For simulator testing:
+- Simulator permissions can be reset: Device > Erase All Content and Settings
+- Some features may behave differently on simulator vs real device
